@@ -1,0 +1,27 @@
+version: '2'
+services:
+  db:
+    container_name: db
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: restauth
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3310:3306"
+  web:
+      container_name: web
+      image: app
+      build: .
+      command: sh runserver.sh
+      env_file: .env
+      volumes:
+        - .:/code
+      ports:
+        - "8000:8000"
+        - "9000:9000"
+      links:
+        - db
+#      onrun:
+#        - python3 manage.py migrate
+      depends_on:
+        - db
