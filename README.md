@@ -1,4 +1,4 @@
-# angular_djangorest_test
+# Simple app angular/django-rest displaing 100 emails
 
 Run
 
